@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Age Calculator</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f8ff; /* Light Blue Background */
+      background-color: #000;
+    }
+
+    #calculator-box {
+      background-color: #a91818; /* Black Background */
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      color: #fff; /* White Text */
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input {
+      padding: 8px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #fff; /* White Button Background */
+      color: #000; /* Black Text on Button */
+      border: none;
+      cursor: pointer;
+      padding-bottom: 10px;
+    }
+
+    #output {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="calculator-box">
+    <label for="age">Enter Your Age:</label>
+    <input type="number" id="age" placeholder="Enter your age">
+
+    <button onclick="calculateAge()">Calculate</button>
+
+    <div id="output"></div>
+  </div>
+
+  <script>
+    function calculateAge() {
+      var ageInput = document.getElementById('age');
+      var age = ageInput.value;
+
+      if (age !== '' && !isNaN(age)) {
+        var currentDate = new Date();
+        var birthYear = currentDate.getFullYear() - age;
+
+        document.getElementById('output').innerHTML = 'Your birth year is: ' + birthYear;
+
+        // Call ageleft function
+        ageleft(age);
+      } else {
+        document.getElementById('output').innerHTML = 'Please enter a valid age.';
+      }
+    }
+
+    function ageleft(age) {
+      // Calculate remaining days, weeks, and months
+      var yearsRemaining = 90 - age;
+      var days = yearsRemaining * 365;
+      var months = yearsRemaining * 12;
+      var weeks = yearsRemaining * 52;
+
+      // Display the results in the output panel
+      document.getElementById('output').innerHTML += '<br>You have ' + days + ' days, ' + weeks + ' weeks, and ' + months + ' months left.';
+    }
+  </script>
+</body>
+</html>
